@@ -201,6 +201,43 @@
     .resume { grid-template-columns: 1fr; }
     .main { padding: 30px 25px; }
   }
+  /* 打印按钮 */
+  .print-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(102,126,234,0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+    z-index: 100;
+  }
+  .print-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102,126,234,0.6);
+  }
+  /* 打印样式 */
+  @media print {
+    body {
+      background: #fff !important;
+      padding: 0 !important;
+    }
+    .resume {
+      box-shadow: none !important;
+      border-radius: 0 !important;
+      max-width: 100% !important;
+    }
+    .print-btn { display: none !important; }
+    @page {
+      size: A4;
+      margin: 0;
+    }
+  }
 </style>
 </head>
 <body>
@@ -351,5 +388,6 @@
       </section>
     </main>
   </div>
+  <button class="print-btn" onclick="window.print()">导出 PDF</button>
 </body>
 </html>

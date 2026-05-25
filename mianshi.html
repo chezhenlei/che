@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>前端面试题（5年+ 中小型/外包公司）</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+    margin: 0;
+    padding: 24px;
+    background: #f5f7fa;
+    color: #333;
+    line-height: 1.7;
+  }
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 32px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  }
+  h1 {
+    color: #1677ff;
+    border-bottom: 2px solid #1677ff;
+    padding-bottom: 12px;
+    margin-top: 0;
+  }
+  .meta { color: #888; font-size: 14px; margin-bottom: 24px; }
+  .qa { margin-bottom: 24px; padding: 16px 20px; border-left: 4px solid #1677ff; background: #fafbfc; border-radius: 4px; }
+  .q { font-weight: 600; color: #222; margin-bottom: 8px; }
+  .q .num { display: inline-block; min-width: 28px; color: #1677ff; }
+  .a { color: #555; }
+  .a code, .q code { background: #eef2f7; padding: 2px 6px; border-radius: 4px; color: #d63384; font-size: 90%; }
+  .tag { display: inline-block; padding: 1px 8px; font-size: 12px; border-radius: 10px; margin-left: 8px; vertical-align: middle; }
+  .tag-js { background: #fff7e6; color: #d46b08; }
+  .tag-css { background: #f0f5ff; color: #1d39c4; }
+  .tag-react { background: #e6f7ff; color: #0958d9; }
+  .tag-perf { background: #f6ffed; color: #389e0d; }
+  .tag-net { background: #f9f0ff; color: #531dab; }
+  .tag-eng { background: #fff0f6; color: #c41d7f; }
+  ul { padding-left: 20px; margin: 6px 0; }
+  ul li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>前端面试题汇总（20题）</h1>
+  <p class="meta">适用：5 年以上前端 / 中小型公司 / 外包项目 · 涵盖 JS、CSS、React、性能、网络、工程化</p>
+
+  <div class="qa">
+    <div class="q"><span class="num">1.</span> 说说 JavaScript 的事件循环（Event Loop）<span class="tag tag-js">JS</span></div>
+    <div class="a">JS 是单线程，主线程执行同步代码后会先清空所有微任务队列（Promise.then、MutationObserver、queueMicrotask），再执行一个宏任务（setTimeout、setInterval、I/O、UI 渲染等），如此循环。浏览器还会在合适时机插入渲染。</div>
+  </div>
+
+  <div class="qa">
+    <div class="q"><span class="num">2.</span> 闭包是什么？有什么应用和风险？<span class="tag tag-js">JS</span></div>
+    <div class="a">闭包是函数与其词法作用域的引用绑定。常见用途：模块私有变量、防抖节流、柯里化、函数式封装。风险：未释放的引用会造成内存泄漏，需注意定时器、事件监听及时解绑。</div>
+  </div>
+
+  <div class="qa">
+    <div class="q"><span class="num">3.</span> 谈谈 <code>this</code> 的指向规则<span class="tag tag-js">JS</span></div>
+    <div class="a">优先级：new > bind/call/apply > 对象方法调用 > 默认调用（严格模式 undefined，非严格 window）。箭头函数无自己的 this，沿用外层词法 this。</div>
+  </div>
+
+  <div class="qa">
+    <div class="q"><span class="num">4.</span> Promise、async/await 与错误处理<span class="tag tag-js">JS</span></div>
+    <div class="a">Promise 三态不可逆，then 返回新 Promise；async 函数返回 Promise，await 等待结果。错误捕获用 try/catch，或在 Promise 链末尾加 catch；并发用 <code>Promise.all</code>，全部结果用 <code>Promise.allSettled</code>。</div>
+  </div>
+
+  <div class="qa">
+    <div class="q"><span class="num">5.</span> 防抖与节流的区别及实现思路<span class="tag tag-js">JS</span></div>
+    <div class="a">防抖（debounce）：n 毫秒内重复触发，重新计时，最后一次执行，常用于搜索输入。节流（throttle）：n 毫秒内只执行一次，常用于滚动、resize。实现核心是闭包保存 timer/lastTime。</div>
+  </div>
+
+  <div class="qa">
+    <div class="q"><span class="num">6.</span> ES6+ 你常用的哪些特性？<span class="tag tag-js">JS</span></div>
+    <div class="a">let/const、解构、模板字符串、箭头函数、Class、Promise/async、Map/Set、可选链 <code>?.</code>、空值合并 <code>??</code>、ES Modules、Symbol、迭代器/生成器等。</div>
+  </div>
+
+  <div class="qa">
+    <div class="q"><span class="num">7.</span> CSS 盒模型与 BFC<span class="tag tag-css">CSS</span></div>
+    <div class="a">标准盒模型 width 仅含内容区；IE/怪异盒模型 width 含 padding+border，可用 <code>box-sizing: border-box</code> 切换。BFC 是块级格式化上下文，可清除浮动、阻止外边距合并，触发条件如 overflow 非 visible、display:flow-root。</div>
+  </div>
+
+  <div class="qa">
+    <div class="q"><span class="num">8.</span> Flex 与 Grid 的使用场景<span class="tag tag-css">CSS</span></div>
+    <div class="a">Flex 适合一维布局（导航栏、按钮组、垂直居中），Grid 适合二维布局（页面整体结构、复杂卡片）。两者可组合使用：Grid 做骨架，Flex 做局部对齐。</div>
+  </div>
+
+  <div class="qa">
+    <div class="q"><span class="num">9.</span> 实现垂直水平居中的几种方式<span class="tag tag-css">CSS</span></div>
+    <div class="a">
+      <ul>
+        <li>flex：<code>display:flex; justify-content:center; align-items:center;</code></li>
+        <li>grid：<code>display:grid; place-items:center;</code></li>
+        <li>绝对定位 + transform：<code>top:50%;left:50%;transform:translate(-50%,-50%);</code></li>
+        <li>inline-block + text-align + line-height（旧方案）</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="q"><span class="num">10.</span> 浏览器渲染流程与重排重绘<span class="tag tag-perf">性能</span></div>
+    <div class="a">流程：解析 HTML→DOM、解析 CSS→CSSOM、合成 Render Tree→Layout→Paint→Composite。修改尺寸/位置触发重排（reflow），仅改颜色等触发重绘。优化：批量修改、用 transform/opacity 走合成层、避免强制同步布局。</div>
+  </div>
+
+  <div class="qa">
+    <div class="q"><span class="num">11.</span> 从输入 URL 到页面展示发生了什么？<span class="tag tag-net">网络</span></div>
+    <div class="a">DNS 解析 → TCP 三次握手（HTTPS 还需 TLS 握手）→ 发送 HTTP 请求 → 服务器响应 → 浏览器解析渲染 → 执行 JS → 触发后续接口 → 释放连接。每一步都有可能成为性能瓶颈。</div>
+  </div>
+
+  <div class="qa">
+    <div class="q"><span class="num">12.</span> HTTP 缓存机制<span class="tag tag-net">网络</span></div>
+    <div class="a">分强缓存（Cache-Control: max-age、Expires，命中返回 200 from cache）和协商缓存（Last-Modified/If-Modified-Since、ETag/If-None-Match，命中返回 304）。静态资源用强缓存+hash 文件名，HTML 用协商缓存。</div>
+  </div>
+
+  <div class="qa">
+    <div class="q"><span class="num">13.</span> 跨域问题与解决方案<span class="tag tag-net">网络</span></div>
+    <div class="a">同源策略限制不同协议/域名/端口的请求。解决：CORS（推荐，由后端配置响应头）、Nginx/Node 反向代理、JSONP（仅 GET，已少用）、postMessage（跨窗口通信）、document.domain（同主域）。</div>
+  </div>
+
+  <div class="qa">
+    <div class="q"><span class="num">14.</span> 常见的 Web 安全问题<span class="tag tag-net">安全</span></div>
+    <div class="a">XSS：输入输出做转义、CSP 限制脚本来源；CSRF：Token 校验、SameSite Cookie、验证 Referer；点击劫持：X-Frame-Options；接口安全：HTTPS、签名、限频。</div>
+  </div>
+
+  <div class="qa">
+    <div class="q"><span class="num">15.</span> React 函数组件与 Hooks 注意事项<span class="tag tag-react">React</span></div>
+    <div class="a">Hooks 必须在组件顶层调用，不能放在条件/循环里；useEffect 中处理副作用并在返回函数里清理；依赖数组要写完整；useMemo/useCallback 用于稳定引用，不要滥用；状态更新是异步合并的。</div>
+  </div>
+
+  <div class="qa">
+    <div class="q"><span class="num">16.</span> React 性能优化手段<span class="tag tag-react">React</span></div>
+    <div class="a">合理拆分组件、使用 memo/useMemo/useCallback、列表加 key、避免在 render 里创建新引用、按需引入、路由懒加载（React.lazy + Suspense）、虚拟列表处理长列表、避免不必要的 Context 引发全树渲染。</div>
+  </div>
+
+  <div class="qa">
+    <div class="q"><span class="num">17.</span> 受控组件与非受控组件<span class="tag tag-react">React</span></div>
+    <div class="a">受控组件：表单值由 React 状态驱动，便于校验和联动；非受控组件：通过 ref 直接读取 DOM 值，适合简单场景或与第三方库集成。表单较多时可借助 react-hook-form、Formik 等。</div>
+  </div>
+
+  <div class="qa">
+    <div class="q"><span class="num">18.</span> 前端首屏性能优化思路<span class="tag tag-perf">性能</span></div>
+    <div class="a">
+      <ul>
+        <li>资源：压缩、Gzip/Brotli、分包、Tree Shaking、CDN、HTTP/2</li>
+        <li>加载：路由懒加载、图片懒加载、关键资源 preload</li>
+        <li>渲染：SSR/预渲染、骨架屏、避免大体积同步 JS</li>
+        <li>缓存：强缓存 hash 文件、Service Worker</li>
+        <li>监控：LCP/FCP/CLS/INP 指标驱动迭代</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="q"><span class="num">19.</span> Webpack/Vite 构建优化经验<span class="tag tag-eng">工程化</span></div>
+    <div class="a">Webpack：splitChunks 拆包、缓存（cache、HardSource）、thread-loader 多进程、DllPlugin/外部化大库、source-map 选择合适模式。Vite：基于 ESM dev 启动快，生产 Rollup 打包；优化预构建依赖、合理使用插件、按需加载。</div>
+  </div>
+
+  <div class="qa">
+    <div class="q"><span class="num">20.</span> 项目难点与团队协作经验（开放题）<span class="tag tag-eng">软实力</span></div>
+    <div class="a">建议结构：背景 → 难点 → 你的方案 → 量化结果。例如：旧项目升级（Webpack→Vite，构建从 60s→8s）；多端组件库沉淀（提效 30%）；线上事故复盘（监控 + 报警 + 兜底）；带新人 / Code Review 规范的落地等。重点突出业务理解、推动力与可衡量的产出。</div>
+  </div>
+
+</div>
+</body>
+</html>
